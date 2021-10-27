@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}home.html{% endblock %}
+
+{% block content %}
+{% load static %}
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+                <img class="img-fluid rounded-3 my-5" src={% static "img/home.png" %} height="250" width="250" alt="..." /></div>
+            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">anti-TBML</h1>
+                    <p class="lead fw-normal text-white-50 mb-4">무역서류를 기반으로 이상거래를 탐지하는 시스템 </p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                        <a class="btn btn-primary btn-lg px-4 me-sm-3" href="{% url 'introduce' %}">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<section class="py-5 bg-light">
+    <div class="container px-5">
+        <div class="row gx-5">
+            <h2 class="fw-bolder fs-5 mb-4">관련 기사</h2>
+
+            <!-- News item-->
+            {% for article in articles %}
+                <div class="mb-xl-5">
+                    <div class="small text-muted">{{ article.release_date|date:'N d일, Y년' }}</div>
+                    <a class="link-dark" href="{{ article.link }}"><h3>{{ article.title }}</h3></a>
+                    <h6>{{ article.content }}</h6>
+                </div>
+           {% endfor %}
+
+            <div class="text-end mb-5 mb-xl-0">
+                <a class="text-decoration-none" href="#!">
+                    More news
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
